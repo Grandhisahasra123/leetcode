@@ -1,22 +1,17 @@
-def convert(a):
-    c,l=0,0
-    a=int(a)
-    while(a>0):
-        l+=(a%10)*(2**c)
-        c+=1
-        a=a//10
-    return l
-def con(ans):
-    if ans==0:
-        return '0'
-    l=''
-    while(ans>0):
-        l+=str(ans%2)
-        ans=ans//2
-    return l[::-1]
 class Solution:
     def addBinary(self, a: str, b: str) -> str: 
-        c=convert(a)
-        d=convert(b)
-        ans=c+d
-        return con(ans)
+        i=len(a)-1
+        j=len(b)-1
+        ans=[]
+        carry=0
+        while i>=0 or j>=0 or carry:
+            total=carry
+            if i>=0:
+                total+=int(a[i])
+                i-=1
+            if j>=0:
+                total+=int(b[j])
+                j-=1
+            ans.append(str(total%2))
+            carry=total//2
+        return ''.join(ans[::-1])
