@@ -1,9 +1,9 @@
 class Solution:
     def checkString(self, s: str) -> bool:
-        n=len(s)
-        for i in range(n):
-            if s[i]=='b':
-                for j in range(i+1,n):
-                    if s[j]=='a':
-                        return False
+        seen=False
+        for ch in s:
+            if ch=='b':
+                seen=True
+            elif ch=='a' and seen:
+                return False
         return True
